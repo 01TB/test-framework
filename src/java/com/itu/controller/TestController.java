@@ -1,10 +1,13 @@
-package controller;
+package com.itu.controller;
 
-import servlet.annotation.Route;
+import servlet.annotation.Controller;
+import servlet.annotation.URLMapping;
 
+@Controller(path = "/test")
 public class TestController {
     
-    @Route(url = "/testURL")
+    
+    @URLMapping(url = "/testURL")
     public void testMethod() {
         System.out.println("This is a test method in TestController.");
     }

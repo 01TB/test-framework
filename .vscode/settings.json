@@ -1,5 +1,5 @@
 {
-  "java.project.sourcePaths": ["src\\java\\com\\itu"],
+  "java.project.sourcePaths": ["src\\java"],
   "java.project.outputPath": "bin",
   "java.project.referencedLibraries": [
     "d:\\Dossier Tsitohaina\\ITU\\L3\\Framework\\test-framework\\test-framework\\lib\\servlet.jar",
