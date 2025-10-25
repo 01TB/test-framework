@@ -14,7 +14,7 @@ public class Main {
     }
 
     // Compilation :
-    // javac -cp "lib/servlet.jar;lib/servlet-api.jar" -d bin src/java/com/itu/Main.java src/java/com/itu/controller/TestController.java
+    // javac -cp "lib/servlet.jar;lib/servlet-api.jar" -d bin src/java/com/itu/Main.java src/java/com/itu/controller/TestController.java src/java/com/itu/controller/TestNonController.java src/java/com/itu/controller/BisController.java
 
     // Execution :
     // java -cp "bin;lib/servlet.jar;lib/servlet-api.jar" com.itu.Main
