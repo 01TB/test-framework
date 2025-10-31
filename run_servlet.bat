@@ -1,38 +1,45 @@
 @echo off
+setlocal enabledelayedexpansion
+
 set PROJECT_PATH=%~dp0
-set BUILD_PATH="%PROJECT_PATH%build"
+rem Obtenir le chemin court sans espaces pour BUILD_PATH
+for /f "delims=" %%I in ("%PROJECT_PATH%build") do set BUILD_PATH=%%~sI
 set WEBAPP_PATH="%PROJECT_PATH%src\main\webapp"
 set CATALINA_HOME="D:\Dossier Tsitohaina\ITU\Installation\Apache Tomcat\apache-tomcat-10.1.28"
 set LIB_PATH="%PROJECT_PATH%lib"
 
-rem Verifier si le dossier "build" existe et le supprimer
-if exist %BUILD_PATH% (
-    echo Suppression du dossier build...
-    rmdir /s /q %BUILD_PATH%
-)
+echo Nettoyage du build precedent...
+if exist %BUILD_PATH% rmdir /s /q %BUILD_PATH%
 
-rem Creer la structure de dossiers
-echo Creation de la structure des dossiers...
+echo Creation de la structure...
 mkdir %BUILD_PATH%
 mkdir %BUILD_PATH%\WEB-INF
 mkdir %BUILD_PATH%\WEB-INF\classes
 
-rem Compilation des fichiers .java et sortie dans le repertoire classes
-echo Compilation des fichiers Java...
-javac -d %BUILD_PATH%\WEB-INF\classes -classpath %LIB_PATH%\servlet-api.jar;%LIB_PATH%\* "%PROJECT_PATH%src\main\java\*.java"
+echo Compilation de TOUTES les sources Java...
+for /r "%PROJECT_PATH%src" %%f in (*.java) do (
+    echo Compilation: %%f
+    javac -d "%BUILD_PATH%\WEB-INF\classes" -cp "%LIB_PATH%\servlet-api.jar;%LIB_PATH%\*" "%%f"
+    if errorlevel 1 (
+        echo ERREUR de compilation: %%f
+        pause
+        exit /b 1
+    )
+)
 
-rem Copier le contenu de webapp dans build de manière recursive
-echo Copie recursive des fichiers webapp...
-xcopy %WEBAPP_PATH% %BUILD_PATH% /S /Y
+echo Copie des ressources web...
+xcopy "%WEBAPP_PATH%" "%BUILD_PATH%" /S /Y /I
 
-rem Creer le fichier .war de ce qui se trouve dans build
-echo Creation du fichier WAR...
-cd %BUILD_PATH%
-jar -cvf FrameworkServlet.war *
+echo Creation du WAR...
+cd "%BUILD_PATH%"
+jar -cvf testFramework.war * > nul
 
-rem Deplacer le fichier .war dans le repertoire webapps de Tomcat
-echo Deploiement du fichier WAR dans Tomcat...
-move %BUILD_PATH%\FrameworkServlet.war %CATALINA_HOME%\webapps
+echo Deploiement vers Tomcat...
+move testFramework.war "%CATALINA_HOME%\webapps" > nul
 
-echo Projet Servlet deploye et Tomcat pret a demarrer.
+echo.
+echo ========================================
+echo Deploiement termine avec succes!
+echo ========================================
+echo.
 pause

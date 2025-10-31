@@ -8,16 +8,23 @@
     <!-- Description de l'application -->
     <display-name>Mon Projet Servlet test</display-name>
 
+    <!-- Configuration du package à scanner -->
+    <context-param>
+        <param-name>scanPackage</param-name>
+        <param-value>com.itu.controller</param-value>
+    </context-param>
+
     <!-- Configuration du Servlet -->
     <servlet>
         <servlet-name>FrontServlet</servlet-name>
         <servlet-class>servlet.FrontServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
 
     <!-- Mappage du Servlet -->
     <servlet-mapping>
         <servlet-name>FrontServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
 </web-app>
