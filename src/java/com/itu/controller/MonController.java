@@ -1,5 +1,6 @@
 package com.itu.controller;
 
+import servlet.models.ModelView;
 import servlet.annotation.Controller;
 import servlet.annotation.URLMapping;
 
@@ -7,17 +8,17 @@ import servlet.annotation.URLMapping;
 public class MonController {
 
     @URLMapping(url = "/users")
-    public void listUsers() {
-        // Votre logique ici
+    public String listUsers() {
+        return "Liste des utilisateurs";
     }
 
     @URLMapping(url = "/products")
-    public void listProducts() {
-        // Votre logique ici
+    public String listProducts() {
+        return "Liste des produits";
     }
 
     @URLMapping(url = "/hello")
-    public void sayHello() {
-        // Votre logique ici
+    public ModelView sayHello() {
+        return new ModelView("hello.jsp");
     }
 }
