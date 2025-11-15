@@ -19,6 +19,6 @@ public class MonController {
 
     @URLMapping(url = "/hello")
     public ModelView sayHello() {
-        return new ModelView("hello.jsp");
+        return new ModelView("test.jsp");
     }
 }
