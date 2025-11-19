@@ -38,7 +38,7 @@ public class MonController {
     }
 
     @URLMapping(url = "/employe/{id}/salaire")
-    public ModelView getSalaire(@PathParam("id") int employeId) {
+    public ModelView getSalaire(@PathParam("id") int employeId, String nom, int bibi) {
         ModelView mv = new ModelView("salaire.jsp");
         mv.addData("employeId", employeId);
         mv.addData("salaire", 5000 + employeId * 10);
@@ -46,7 +46,7 @@ public class MonController {
     }
 
     @URLMapping(url = "/user/{username}")
-    public ModelView getUser(@PathParam("username") String username) {
+    public ModelView getUser(@PathParam("username") String username, String nom, int bibi) {
         ModelView mv = new ModelView("user.jsp");
         mv.addData("username", username);
         return mv;
