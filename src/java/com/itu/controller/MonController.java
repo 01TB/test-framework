@@ -1,8 +1,12 @@
 package com.itu.controller;
 
 import servlet.models.ModelView;
+
+import java.util.ArrayList;
+
 import servlet.annotation.Controller;
 import servlet.annotation.URLMapping;
+import servlet.annotation.PathParam;
 
 @Controller(path = "/api")
 public class MonController {
@@ -19,6 +23,32 @@ public class MonController {
 
     @URLMapping(url = "/hello")
     public ModelView sayHello() {
-        return new ModelView("test.jsp");
+
+        ArrayList<String> depts = new ArrayList<>();
+        depts.add("INFORMATIQUE");
+        depts.add("MARKETING");
+        depts.add("FINANCES");
+        
+        ModelView model = new ModelView("test.jsp");  // sans le slash devant !
+        model.addData("nom", "Berthin");
+        model.addData("age", 12);
+        model.addData("departements", depts);
+
+        return model;
+    }
+
+    @URLMapping(url = "/employe/{id}/salaire")
+    public ModelView getSalaire(@PathParam("id") int employeId) {
+        ModelView mv = new ModelView("salaire.jsp");
+        mv.addData("employeId", employeId);
+        mv.addData("salaire", 5000 + employeId * 10);
+        return mv;
+    }
+
+    @URLMapping(url = "/user/{username}")
+    public ModelView getUser(@PathParam("username") String username) {
+        ModelView mv = new ModelView("user.jsp");
+        mv.addData("username", username);
+        return mv;
     }
 }

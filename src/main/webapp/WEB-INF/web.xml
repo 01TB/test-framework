@@ -15,14 +15,14 @@
 
     <!-- Servlet dispatcher pour gérer les requêtes -->
     <servlet>
-        <servlet-name>dispatcher</servlet-name>
+        <servlet-name>DispatcherServlet</servlet-name>
         <servlet-class>servlet.DispatcherServlet</servlet-class>
     </servlet>
 
     <!-- Mappage du Servlet -->
     <servlet-mapping>
-        <servlet-name>dispatcher</servlet-name>
-        <url-pattern>/*</url-pattern>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <url-pattern>/</url-pattern>  <!-- PAS /* ! -->
     </servlet-mapping>
 
 </web-app>
