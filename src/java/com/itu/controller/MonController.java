@@ -5,24 +5,25 @@ import servlet.models.ModelView;
 import java.util.ArrayList;
 
 import servlet.annotation.Controller;
-import servlet.annotation.URLMapping;
-import servlet.annotation.PathParam;
-import servlet.annotation.RequestParam;
+import servlet.annotation.mappings.GetMapping;
+import servlet.annotation.mappings.PostMapping;
+import servlet.annotation.parameters.PathParam;
+import servlet.annotation.parameters.RequestParam;
 
 @Controller(path = "/api")
 public class MonController {
 
-    @URLMapping(url = "/users")
+    @GetMapping(url = "/users")
     public String listUsers() {
         return "Liste des utilisateurs";
     }
 
-    @URLMapping(url = "/products")
+    @GetMapping(url = "/products")
     public String listProducts() {
         return "Liste des produits";
     }
 
-    @URLMapping(url = "/hello")
+    @GetMapping(url = "/hello")
     public ModelView sayHello() {
 
         ArrayList<String> depts = new ArrayList<>();
@@ -38,7 +39,7 @@ public class MonController {
         return model;
     }
 
-    @URLMapping(url = "/employe/{id}/salaire")
+    @GetMapping(url = "/employe/{id}/salaire")
     public ModelView getSalaire(@PathParam("id") int employeId) {
         ModelView mv = new ModelView("salaire.jsp");
         mv.addData("employeId", employeId);
@@ -46,7 +47,7 @@ public class MonController {
         return mv;
     }
 
-    @URLMapping(url = "/user/{username}")
+    @GetMapping(url = "/user/{username}")
     public ModelView getUser(@PathParam("username") String username) {
         ModelView mv = new ModelView("user.jsp");
         mv.addData("username", username);
@@ -54,13 +55,13 @@ public class MonController {
     }
 
     // Page avec formulaire
-    @URLMapping(url = "/inscription")
+    @GetMapping(url = "/inscription")
     public ModelView showForm() {
         return new ModelView("inscription.jsp");
     }
 
     // Traitement du formulaire 
-    @URLMapping(url = "/inscription/traiter")
+    @PostMapping(url = "/inscription/traiter")
     public ModelView traiterForm(
             @RequestParam("nom") String nom,
             @RequestParam("age") int age,
