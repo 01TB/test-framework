@@ -15,6 +15,14 @@
             <option value="MARKETING">Marketing</option>
             <option value="FINANCES">Finances</option>
         </select>
+        <div>
+            <input type="checkbox" name="role" value="Technicien"/>
+            <label for="role">Technicien</label>
+            <input type="checkbox" name="role" value="Secretaire"/>
+            <label for="role">Secretaire</label>
+            <input type="checkbox" name="role" value="Directeur"/>
+            <label for="role">Directeur</label>
+        </div>
         <button type="submit">S'inscrire</button>
     </form>
 </body>
