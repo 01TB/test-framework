@@ -3,11 +3,13 @@ package com.itu.controller;
 import servlet.models.ModelView;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import com.itu.models.Employe;
 
 import servlet.annotation.Controller;
+import servlet.annotation.json.ResponseJSON;
 import servlet.annotation.mappings.GetMapping;
 import servlet.annotation.mappings.PostMapping;
 import servlet.annotation.parameters.PathParam;
@@ -64,10 +66,20 @@ public class MonController {
     }
 
     // Traitement du formulaire 
+    @ResponseJSON
     @PostMapping(url = "/inscription/traiter")
     public ModelView traiterForm(Employe employe) {
         ModelView mv = new ModelView("confirmation.jsp");
         mv.addData("employe", employe);
         return mv;
+    }
+
+    @ResponseJSON
+    @GetMapping(url = "/emp")
+    public List<Employe> getEmploye() {
+        List<Employe> employes = new ArrayList<>();
+        employes.add(new Employe(1, "RAKOTO","Alice", "alice.rakoto@yahoo.fr"));
+        employes.add(new Employe(2, "RABE", "Bob", "bob.rabe@berthin.fr"));
+        return employes;
     }
 }

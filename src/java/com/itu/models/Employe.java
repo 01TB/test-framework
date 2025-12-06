@@ -10,6 +10,15 @@ public class Employe {
     private String[] roles;
     private Departement dept;
     
+    public Employe(int id, String nom, String prenom, String email) {
+        this.id = id;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+    }
+
+    public Employe() {}   
+
     public int getId() {
         return id;
     }
@@ -46,7 +55,7 @@ public class Employe {
     public void setDept(Departement dept) {
         this.dept = dept;
     }
-    
+
     @Override
     public String toString() {
         return "Employe [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", roles="

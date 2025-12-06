@@ -6,6 +6,9 @@ set "PROJECT_PATH=D:\Dossier Tsitohaina\ITU\L3\Framework\test-framework\test-fra
 set "SRC_JAVA_DIR=%PROJECT_PATH%\src\java"
 set "LIB_DIR=%PROJECT_PATH%\lib"
 set "SERVLET_API_JAR=%LIB_DIR%\servlet-api.jar"
+set "JSON_DATABIND_LIB_JAR=%LIB_DIR%\jackson-databind-2.20.1.jar"
+set "JSON_CORE_LIB_JAR=%LIB_DIR%\jackson-core-2.20.1.jar"
+set "JSON_ANNOTATIONS_LIB_JAR=%LIB_DIR%\jackson-annotations-2.20.jar"
 set "FRAMEWORK_JAR=%LIB_DIR%\servlet.jar"
 set "WEBAPP_PATH=%PROJECT_PATH%\src\main\webapp"
 set "CLASSES_DIR=%PROJECT_PATH%\src\main\classes"
@@ -84,8 +87,11 @@ if exist "%WEBAPP_PATH%" (
     xcopy "%WEBAPP_PATH%" "%BUILD_DIR%" /S /Y /I > nul
 )
 
-echo Copie framework...
+echo Copie framework et dependances necessaires...
 copy "%FRAMEWORK_JAR%" "%BUILD_DIR%\WEB-INF\lib\" > nul
+copy "%JSON_DATABIND_LIB_JAR%" "%BUILD_DIR%\WEB-INF\lib\" > nul
+copy "%JSON_CORE_LIB_JAR%" "%BUILD_DIR%\WEB-INF\lib\" > nul
+copy "%JSON_ANNOTATIONS_LIB_JAR%" "%BUILD_DIR%\WEB-INF\lib\" > nul
 
 echo Creation WAR...
 cd /d "%BUILD_DIR%"
