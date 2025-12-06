@@ -1,5 +1,7 @@
 package com.itu.models;
 
+import java.util.Arrays;
+
 public class Employe {
     private int id;
     private String nom;
@@ -43,5 +45,11 @@ public class Employe {
     }
     public void setDept(Departement dept) {
         this.dept = dept;
+    }
+    
+    @Override
+    public String toString() {
+        return "Employe [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", email=" + email + ", roles="
+                + Arrays.toString(roles) + ", dept=" + dept + "]";
     }
 }

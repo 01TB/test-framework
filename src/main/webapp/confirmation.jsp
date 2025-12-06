@@ -22,25 +22,25 @@
         <h1>Inscription Confirmée !</h1>
 
         <div class="info">
-            <span class="label">ID :</span> <%=employe.id%>
+            <span class="label">ID :</span> <%=employe.getId()%>
         </div>
         <div class="info">
-            <span class="label">Nom complet :</span> <%=employe.prenom%> <%=employe.nom%>
+            <span class="label">Nom complet :</span> <%=employe.getPrenom()%> <%=employe.getNom()%>
         </div>
         <div class="info">
-            <span class="label">Email :</span> <%=employe.email%>
+            <span class="label">Email :</span> <%=employe.getEmail()%>
         </div>
 
         <div class="info">
             <span class="label">Département :</span>
-            ID: <%=employe.dept.id%> | Nom: <%=employe.dept.nom%>
+            ID: <%=employe.getDept().getId()%> | Nom: <%=employe.getDept().getNom()%>
         </div>
 
         <div class="info">
             <span class="label">Rôles :</span>
-            <% if(employe.roles!=null){ %>
+            <% if(employe.getRoles()!=null){ %>
                 <ul>
-                    <% for(String role : employe.roles) { %>
+                    <% for(String role : employe.getRoles()) { %>
                         <li><%=role%></li>
                     <% } %>
                 </ul>
