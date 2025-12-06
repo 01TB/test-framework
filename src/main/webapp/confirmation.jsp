@@ -1,40 +1,55 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.lang.Integer"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import = "models.Employe"%>
 <%
-    String nom = (String) request.getAttribute("nom");
-    String age = (String) request.getAttribute("age");
-    String email = (String) request.getAttribute("email");
-    String departement = (String) request.getAttribute("departement");
-    String[] roles = (String[]) request.getAttribute("role");
-
+    Employe employe = (Employe) request.getAttribute("employe");
 %>
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>Confirmation</title>
+    <meta charset="UTF-8">
+    <title>Confirmation Inscription</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background: #f7f7f7; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); max-width: 600px; }
+        h1 { color: #2c3e50; }
+        .info { margin: 10px 0; }
+        .label { font-weight: bold; color: #34495e; }
+        ul { margin: 5px 0; padding-left: 20px; }
+    </style>
 </head>
 <body>
-    <div class="box">
-        <h1>Félicitations <%= nom %> !</h1>
-        <p>Inscription réussie !</p>
-        <p>Tu as <%= age %> ans, ton email est <strong><%= email %></strong></p>
-        <p>Département : <strong><%= departement %></strong></p>
-        <p>Rôle(s) : 
-            <strong>
-            <%
-                if (roles != null) {
-                    for (int i = 0; i < roles.length; i++) {
-                        out.print(roles[i]);
-                        if (i < roles.length - 1) {
-                            out.print(", ");
-                        }
-                    }
-                } else {
-                    out.print("Aucun rôle sélectionné");
-                }
-            %>
-            </strong>
-        <br>
+    <div class="card">
+        <h1>Inscription Confirmée !</h1>
+
+        <div class="info">
+            <span class="label">ID :</span> <%=employe.id%>
+        </div>
+        <div class="info">
+            <span class="label">Nom complet :</span> <%=employe.prenom%> <%=employe.nom%>
+        </div>
+        <div class="info">
+            <span class="label">Email :</span> <%=employe.email%>
+        </div>
+
+        <div class="info">
+            <span class="label">Département :</span>
+            ID: <%=employe.dept.id%> | Nom: <%=employe.dept.nom%>
+        </div>
+
+        <div class="info">
+            <span class="label">Rôles :</span>
+            <% if(employe.roles!=null){ %>
+                <ul>
+                    <% for(String role : employe.roles) { %>
+                        <li><%=role%></li>
+                    <% } %>
+                </ul>
+            <% } else { %>
+                <em>Aucun rôle sélectionné</em>
+            <% } %>
+        </div>
+
+        <p><a href="${pageContext.request.contextPath}/api/inscription">← Nouvelle inscription</a></p>
     </div>
 </body>
 </html>

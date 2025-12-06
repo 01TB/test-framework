@@ -5,6 +5,8 @@ import servlet.models.ModelView;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.itu.models.Employe;
+
 import servlet.annotation.Controller;
 import servlet.annotation.mappings.GetMapping;
 import servlet.annotation.mappings.PostMapping;
@@ -63,16 +65,9 @@ public class MonController {
 
     // Traitement du formulaire 
     @PostMapping(url = "/inscription/traiter")
-    public ModelView traiterForm(Map<String,Object> formData) {
-
+    public ModelView traiterForm(Employe employe) {
         ModelView mv = new ModelView("confirmation.jsp");
-        mv.addData("nom", (String) formData.get("nom"));
-        mv.addData("age",  (String) formData.get("age"));
-        mv.addData("email",  (String) formData.get("email"));
-        mv.addData("departement",  (String) formData.get("departement"));
-        mv.addData("role",  (String[]) formData.get("role"));
-        mv.addData("message", "Inscription réussie !");
-
+        mv.addData("employe", employe);
         return mv;
     }
 }
