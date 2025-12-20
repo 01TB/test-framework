@@ -82,4 +82,19 @@ public class MonController {
         employes.add(new Employe(2, "RABE", "Bob", "bob.rabe@berthin.fr"));
         return employes;
     }
+
+    @GetMapping(url = "/form")
+    public ModelView showFormBis() {
+        return new ModelView("form-upload.jsp");
+    }
+
+    @PostMapping(url = "/form/upload")
+    public ModelView uploadFile(Map<String, byte[]> files,
+                                @RequestParam("description") String description) {
+        ModelView mv = new ModelView("resultat-upload.jsp");
+        mv.addData("description", description);         
+        mv.addData("fileBytes1", (byte[]) files.get("fichier_1"));                           
+        mv.addData("fileBytes2", (byte[]) files.get("fichier_2"));                           
+        return mv;
+    }
 }

@@ -17,6 +17,11 @@
     <servlet>
         <servlet-name>DispatcherServlet</servlet-name>
         <servlet-class>servlet.DispatcherServlet</servlet-class>
+        <multipart-config>
+            <file-size-threshold>1048576</file-size-threshold>  <!-- 1MB en bytes -->
+            <max-file-size>52428800</max-file-size>             <!-- 50MB -->
+            <max-request-size>104857600</max-request-size>      <!-- 100MB -->
+        </multipart-config>
     </servlet>
 
     <!-- Mappage du Servlet -->
