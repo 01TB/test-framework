@@ -14,6 +14,7 @@ import servlet.annotation.mappings.GetMapping;
 import servlet.annotation.mappings.PostMapping;
 import servlet.annotation.parameters.PathParam;
 import servlet.annotation.parameters.RequestParam;
+import servlet.annotation.parameters.SessionParam;
 
 @Controller(path = "/api")
 public class MonController {
@@ -95,6 +96,16 @@ public class MonController {
         mv.addData("description", description);         
         mv.addData("fileBytes1", (byte[]) files.get("fichier_1"));                           
         mv.addData("fileBytes2", (byte[]) files.get("fichier_2"));                           
+        return mv;
+    }
+
+    @GetMapping(url = "/test-session")
+    public ModelView testSession(@SessionParam Map<String, Object> sessionData) {
+
+        sessionData.put("test", "Session fonctionnelle !");
+
+        ModelView mv = new ModelView("test-session.jsp");
+        mv.addData("sessionData", sessionData);
         return mv;
     }
 }
