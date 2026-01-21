@@ -15,6 +15,7 @@ import servlet.annotation.mappings.PostMapping;
 import servlet.annotation.parameters.PathParam;
 import servlet.annotation.parameters.RequestParam;
 import servlet.annotation.parameters.SessionParam;
+import servlet.annotation.security.Authorized;
 
 @Controller(path = "/api")
 public class MonController {
@@ -108,4 +109,40 @@ public class MonController {
         mv.addData("sessionData", sessionData);
         return mv;
     }
+
+    @GetMapping(url = "/login")
+    public ModelView login() {
+        ModelView mv = new ModelView("login.jsp");
+        return mv;
+    }
+
+    @PostMapping(url = "/register")
+    public ModelView register(@SessionParam Map<String, Object> sessionData,
+                            Map<String, Object> data) {
+
+        ModelView mv = new ModelView();    
+
+        String login = (String) data.get("login");
+        String password = (String) data.get("password");
+        if(login.compareTo("berthin") == 0 && password.compareTo("laura") == 0) {
+            sessionData.put("login", login);
+            sessionData.put("password", password);
+            sessionData.put("userRole", "IT");
+            mv.setView("/api/test-role");
+        } else {
+            mv.setView("/api/login");
+        }
+
+
+        mv.addData("sessionData", sessionData);
+        return mv;
+    }
+
+    @Authorized(roles = {"FINANCE", "IT"})
+    @GetMapping(url = "/test-role")
+    public ModelView testRole() {
+        ModelView mv = new ModelView("test-role.jsp");
+        return mv;
+    }
+    
 }

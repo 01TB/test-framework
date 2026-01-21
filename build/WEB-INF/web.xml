@@ -13,6 +13,18 @@
         <listener-class>servlet.FrameworkInitializer</listener-class>
     </listener>
 
+    <!-- Nom de la variable de Map de données de session -->
+    <context-param>
+        <param-name>sessionDataKey</param-name>
+        <param-value>sessionData</param-value>
+    </context-param>
+
+    <!-- Clé de session - Rôle -->
+    <context-param>
+        <param-name>sessionRoleKey</param-name>
+        <param-value>userRole</param-value>
+    </context-param>
+
     <!-- Servlet dispatcher pour gérer les requêtes -->
     <servlet>
         <servlet-name>DispatcherServlet</servlet-name>
